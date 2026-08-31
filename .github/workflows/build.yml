@@ -1,0 +1,43 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extraire StepStreak.zip
+        run: unzip -o StepStreak.zip -d .
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Generate Gradle wrapper
+        working-directory: StepStreak
+        run: gradle wrapper --gradle-version 8.7
+
+      - name: Grant execute permission for gradlew
+        working-directory: StepStreak
+        run: chmod +x ./gradlew
+
+      - name: Build debug APK
+        working-directory: StepStreak
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: StepStreak-debug-apk
+          path: StepStreak/app/build/outputs/apk/debug/*.apk

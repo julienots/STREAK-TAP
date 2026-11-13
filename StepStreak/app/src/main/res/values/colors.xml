@@ -1,0 +1,19 @@
+<resources>
+    <color name="bg">#0B0A14</color>
+    <color name="launcher_bg">#140F2B</color>
+    <color name="primary">#7C5CFF</color>
+    <color name="primary_dark">#4B32C9</color>
+    <color name="pink">#FF4FA3</color>
+    <color name="accent">#FF8A3D</color>
+    <color name="gold">#FFD24D</color>
+    <color name="mint">#3DF5B0</color>
+    <color name="ice">#7FD8FF</color>
+    <color name="surface">#17142A</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B4ADD1</color>
+    <color name="text_faint">#6E6790</color>
+    <color name="glass">#14FFFFFF</color>
+    <color name="glass_stroke">#22FFFFFF</color>
+    <color name="ripple">#33FFFFFF</color>
+    <color name="slider_inactive">#26FFFFFF</color>
+</resources>

@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <com.stepstreak.app.AuroraView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- ============================================================ AUJOURD'HUI -->
+    <ScrollView
+        android:id="@+id/pageToday"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/todayContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="120dp">
+
+            <!-- En-tête -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvGreeting"
+                        style="@style/Text.H1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bonjour 👋" />
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        style="@style/Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvLevelChip"
+                    style="@style/Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_chip_gold"
+                    android:text="⭐ Niv. 1"
+                    android:textColor="@color/gold" />
+
+                <TextView
+                    android:id="@+id/btnSettings"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_circle_glass"
+                    android:gravity="center"
+                    android:text="⚙️"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <!-- Carte héro : anneau -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_glass_hero"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="18dp"
+                android:paddingBottom="22dp">
+
+                <FrameLayout
+                    android:id="@+id/ringContainer"
+                    android:layout_width="290dp"
+                    android:layout_height="290dp">
+
+                    <com.stepstreak.app.ProgressRingView
+                        android:id="@+id/ringView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvRingEmoji"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="👟"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:id="@+id/tvSteps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:includeFontPadding="false"
+                            android:shadowColor="#807C5CFF"
+                            android:shadowRadius="24"
+                            android:text="0"
+                            android:textColor="@color/text_primary"
+                            android:textSize="50sp" />
+
+                        <TextView
+                            android:id="@+id/tvGoalLine"
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="sur 8 000 pas" />
+
+                        <TextView
+                            android:id="@+id/tvPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_pill_gradient"
+                            android:fontFamily="sans-serif-black"
+                            android:paddingStart="14dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="14dp"
+                            android:paddingBottom="4dp"
+                            android:text="0 %"
+                            android:textColor="@color/text_primary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvMotivation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvGoalChip"
+                    style="@style/Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="🎯 Objectif" />
+            </LinearLayout>
+
+            <!-- Stats rapides -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/StatCard">
+                    <TextView style="@style/StatEmoji" android:text="📍" />
+                    <TextView android:id="@+id/tvKm" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="kilomètres" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/StatCard"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
+                    <TextView style="@style/StatEmoji" android:text="🔥" />
+                    <TextView android:id="@+id/tvKcal" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="kcal" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/StatCard">
+                    <TextView style="@style/StatEmoji" android:text="⏱️" />
+                    <TextView android:id="@+id/tvMin" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="min actives" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Série -->
+            <LinearLayout
+                android:id="@+id/cardStreak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_fire"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <com.stepstreak.app.FlameView
+                    android:id="@+id/flameView"
+                    android:layout_width="86dp"
+                    android:layout_height="100dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Text.Overline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SÉRIE EN COURS" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvStreakCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:includeFontPadding="false"
+                            android:shadowColor="#AAFF7A1A"
+                            android:shadowRadius="20"
+                            android:text="0"
+                            android:textColor="@color/text_primary"
+                            android:textSize="46sp" />
+
+                        <TextView
+                            android:id="@+id/tvStreakUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text=" jours"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvStreakRecord"
+                        style="@style/Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvGradeChip"
+                            style="@style/Chip.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvFreezeChip"
+                            style="@style/Chip.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_chip_ice" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="@color/text_faint"
+                    android:textSize="28sp" />
+            </LinearLayout>
+
+            <!-- Défi du jour -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_challenge"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvChallengeEmoji"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_circle_glass"
+                        android:gravity="center"
+                        android:text="🎯"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Text.Overline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DÉFI DU JOUR" />
+
+                        <TextView
+                            android:id="@+id/tvChallengeTitle"
+                            style="@style/Text.H3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tvChallengeDesc"
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvChallengeXp"
+                        style="@style/Chip.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_gold"
+                        android:textColor="@color/gold" />
+                </LinearLayout>
+
+                <com.stepstreak.app.GradientBarView
+                    android:id="@+id/challengeBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="14dp" />
+            </LinearLayout>
+
+            <!-- Semaine -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_glass_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Text.H3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="7 derniers jours" />
+
+                    <TextView
+                        android:id="@+id/tvWeekTotal"
+                        style="@style/Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <com.stepstreak.app.WeekStripView
+                    android:id="@+id/weekStrip"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+            <!-- Fiabilité arrière-plan -->
+            <LinearLayout
+                android:id="@+id/cardBattery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_warning"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="@style/Text.H3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚡ Fiabilise le comptage" />
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Autorise StepStreak à tourner en arrière-plan pour ne perdre aucun pas, même app fermée." />
+
+                <TextView
+                    android:id="@+id/btnBattery"
+                    style="@style/Button.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Autoriser l'exécution en arrière-plan" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============================================================== STATS -->
+    <ScrollView
+        android:id="@+id/pageStats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="120dp">
+
+            <TextView
+                style="@style/Text.H1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Statistiques 📊" />
+
+            <TextView
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Touche une barre pour voir le détail" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_segment"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <TextView android:id="@+id/seg7" style="@style/Segment" android:text="7 jours" />
+                <TextView android:id="@+id/seg30" style="@style/Segment" android:text="30 jours" />
+                <TextView android:id="@+id/seg90" style="@style/Segment" android:text="3 mois" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_glass_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/tvChartSelected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@color/text_primary"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/tvChartSelectedDate"
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.stepstreak.app.BarChartView
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout style="@style/MiniStat">
+                        <TextView android:id="@+id/tvSumTotal" style="@style/MiniStatValue" />
+                        <TextView style="@style/StatLabel" android:text="pas au total" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/MiniStat">
+                        <TextView android:id="@+id/tvSumAvg" style="@style/MiniStatValue" />
+                        <TextView style="@style/StatLabel" android:text="moyenne / jour actif" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/MiniStat">
+                        <TextView android:id="@+id/tvSumReached" style="@style/MiniStatValue" />
+                        <TextView style="@style/StatLabel" android:text="objectifs atteints" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_glass_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="@style/Text.H3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calendrier d'activité" />
+
+                <TextView
+                    android:id="@+id/tvHeatSub"
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp" />
+
+                <com.stepstreak.app.HeatmapView
+                    android:id="@+id/heatmap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/heatLegend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.H2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Records personnels 🏅" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/RecordCard" android:layout_marginEnd="10dp">
+                    <TextView style="@style/StatEmoji" android:text="⭐" />
+                    <TextView android:id="@+id/tvRecBest" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="meilleur jour" />
+                    <TextView android:id="@+id/tvRecBestDate" style="@style/StatLabel" android:textColor="@color/text_faint" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/RecordCard">
+                    <TextView style="@style/StatEmoji" android:text="🔥" />
+                    <TextView android:id="@+id/tvRecStreak" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="plus longue série" />
+                    <TextView style="@style/StatLabel" android:text="jours" android:textColor="@color/text_faint" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/RecordCard" android:layout_marginEnd="10dp">
+                    <TextView style="@style/StatEmoji" android:text="👣" />
+                    <TextView android:id="@+id/tvRecTotal" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="pas depuis le début" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/RecordCard">
+                    <TextView style="@style/StatEmoji" android:text="🗺️" />
+                    <TextView android:id="@+id/tvRecKm" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="km parcourus" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/RecordCard" android:layout_marginEnd="10dp">
+                    <TextView style="@style/StatEmoji" android:text="⚡" />
+                    <TextView android:id="@+id/tvRecKcal" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="kcal brûlées" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/RecordCard">
+                    <TextView style="@style/StatEmoji" android:text="🎯" />
+                    <TextView android:id="@+id/tvRecGoalDays" style="@style/StatValue" />
+                    <TextView style="@style/StatLabel" android:text="jours objectif atteint" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============================================================ TROPHÉES -->
+    <ScrollView
+        android:id="@+id/pageTrophies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="120dp">
+
+            <TextView
+                style="@style/Text.H1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trophées 🏆" />
+
+            <TextView
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grades, niveau, gels de série et succès" />
+
+            <!-- Grade -->
+            <LinearLayout
+                android:id="@+id/cardGrade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvGradeEmojiBig"
+                        android:layout_width="76dp"
+                        android:layout_height="76dp"
+                        android:elevation="8dp"
+                        android:gravity="center"
+                        android:textSize="36sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Text.Overline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GRADE ACTUEL" />
+
+                        <TextView
+                            android:id="@+id/tvGradeName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/text_primary"
+                            android:textSize="30sp" />
+
+                        <TextView
+                            android:id="@+id/tvGradeNext"
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_primary" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.stepstreak.app.GradientBarView
+                    android:id="@+id/gradeBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="18dp" />
+
+                <LinearLayout
+                    android:id="@+id/gradeLadder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" />
+            </LinearLayout>
+
+            <!-- Niveau -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_glass_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_circle_gold"
+                        android:gravity="center"
+                        android:text="⭐"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvLevel"
+                            style="@style/Text.H2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tvLevelTitle"
+                            style="@style/Text.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvXp"
+                        style="@style/Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <com.stepstreak.app.GradientBarView
+                    android:id="@+id/xpBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="14dp" />
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Gagne de l'XP en marchant, en atteignant tes objectifs, en réussissant les défis et en débloquant des succès." />
+            </LinearLayout>
+
+            <!-- Gels -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_card_ice"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvFreezeTitle"
+                        style="@style/Text.H3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvFreezeIcons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Tous les 7 jours de série, tu gagnes un gel 🧊 (2 max). Si tu rates un jour, il est utilisé automatiquement et ta série est sauvée." />
+            </LinearLayout>
+
+            <!-- Succès -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.H2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Succès" />
+
+                <TextView
+                    android:id="@+id/tvAchCount"
+                    style="@style/Chip.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_chip_gold"
+                    android:textColor="@color/gold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/achievementsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ========================================================= NAVIGATION -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/bg_nav"
+        android:elevation="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+        <LinearLayout android:id="@+id/tabToday" style="@style/Tab">
+            <TextView style="@style/TabIcon" android:text="☀️" />
+            <TextView style="@style/TabLabel" android:text="Aujourd'hui" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/tabStats" style="@style/Tab">
+            <TextView style="@style/TabIcon" android:text="📊" />
+            <TextView style="@style/TabLabel" android:text="Stats" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/tabTrophies" style="@style/Tab">
+            <TextView style="@style/TabIcon" android:text="🏆" />
+            <TextView style="@style/TabLabel" android:text="Trophées" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.stepstreak.app.ConfettiView
+        android:id="@+id/confetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
